@@ -1,0 +1,21 @@
+public class Sieve {
+    public static void main(String[] args) {
+        long start = System.currentTimeMillis();
+        long max = (long) Math.pow(10, 8);
+        boolean[] primes = new boolean[(int) max];
+        for (int i = 0; i < primes.length; i++) {
+            primes[i] = true;
+        }
+        primes[1] = false; primes[0] = false;
+        for (long i = 1; i < primes.length; i++) {
+            if (!primes[(int) i]) {
+                continue;
+            }
+            for (long x = i * i; x < primes.length; x += i) {
+                primes[(int) x] = false;
+            }
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("Time Elapsed: " + (end - start) + "ms");
+    }
+}
